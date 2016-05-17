@@ -1,3 +1,5 @@
+document.write('NORMAL<br>');
+document.write('======<br>');
 var obj = {
     exeScope: 'Execution scope: obj<br>'
     , fn: function () {
@@ -15,16 +17,19 @@ var obj = {
         // this inside the function refers to obj itself
         document.write(this.exeScope);
     }
-}
+};
 
 window.exeScope = 'Execution scope: window<br>';
 
 obj.fn();
 
-/* Following is the result you'll see on the webpage
+// you can pass in an object as the execution scope
+var scope = {
+    foo: 'bar'
+};
 
-Execution scope: obj
-Execution scope: window
-Execution scope: obj
+(function () {
+    document.write(this.foo);
+}).call(scope);
 
-*/
+document.write('<br><br>');
